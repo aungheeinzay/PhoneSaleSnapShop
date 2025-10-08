@@ -15,7 +15,7 @@ function Product({products}:productProps) {
       <div className='list-card grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4'>
     {
       products.map((p)=>(
-       <Link  key={p.id} href={`/product/${p.id}?productID=${p.product.id}&productType=${p.productType}&imge_url=${p.variantImages[0]?.image_url}&title=${p.product.title}&price=${p.product.price}&color=${p.color}`}>
+       <Link  key={p.id} href={`/product/${p.id}?productID=${p.product.id}&productType=${p.productType}&image_url=${p.variantImages[0]?.image_url}&title=${p.product.title}&price=${p.product.price}&vid=${p.id}&color=${p.color}`}>
         <Card className='hover:shadow-2xl'>
           <CardContent className='flex flex-col flex-center items-center'>
             <div className='w-[250px] h-[250px] overflow-hidden rounded-md'>

@@ -10,8 +10,9 @@ interface variantPickerProps{
     price:number
     productID:number
     image:string
+    vid:number
 }
-function variantPicker({id,color,productID,productType,price,image,title}:variantPickerProps) {
+function variantPicker({id,color,productID,productType,price,image,title,vid}:variantPickerProps) {
     const router = useRouter()
     const searchParams =  useSearchParams()
     const type= searchParams.get("productType") || productType
@@ -25,7 +26,7 @@ function variantPicker({id,color,productID,productType,price,image,title}:varian
     className={cn("w-5 h-5 rounded-full cursor-pointer ",
       type===productType ? "opacity-100" : "opacity-20"
     )}
-    onClick={()=>router.push(`/product/${id}?productID=${productID}}&productType=${productType}&imge_url=${image}&title=${title}&price=${price}&color=${color}`,{scroll:false})}></div>
+    onClick={()=>router.push(`/product/${vid}?productID=${productID}&productType=${productType}&image_url=${image}&title=${title}&price=${price}&vid=${vid}&color=${color}`,{scroll:false})}></div>
   )
 }
 

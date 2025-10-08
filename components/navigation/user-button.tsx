@@ -9,17 +9,24 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { CircleUserRound, LayoutDashboard, LogOut } from "lucide-react"
+import { CircleUserRound, LayoutDashboard, LogOut, ShoppingCart } from "lucide-react"
 import Link from "next/link"
 import { signOut } from "next-auth/react"
 import { CiDeliveryTruck } from "react-icons/ci";
 import { IoSettingsOutline } from "react-icons/io5";
-
+import OrderCart from "../cart/orderCart"
+import { useCartStore } from "@/store/card-store"
  function UserButton({user}:Session) {
-
+const orderCount = useCartStore((state)=>state.cart.length)
 
   return (
-<div>
+<div className="flex gap-12 items-center">
+  <OrderCart>
+    <div className="relative cursor-pointer">
+    <span className="absolute -top-5 -right-5 px-1 py-1 rounded-full bg-primary text-white">{orderCount}</span>
+    <ShoppingCart className="text-primary text-4xl"/>
+  </div>
+  </OrderCart>
 {
     user ? <DropdownMenu>
   <DropdownMenuTrigger><Avatar className="scale-120 cursor-pointer bg-primary">

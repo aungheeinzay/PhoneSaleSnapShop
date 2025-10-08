@@ -3,7 +3,8 @@ import { db } from '@/server'
 import { productVariant } from '@/server/schema'
 import { eq } from 'drizzle-orm'
 import VariantPicker from '@/components/products/variantPicker'
-
+import ImageSlider from '@/components/products/imageSlider'
+import AddToCard from '@/components/cart/addToCard'
 type singleProductPorps={
     params:{
         id:number
@@ -50,10 +51,10 @@ console.log(product);
     <section className='mt-5'>
         {
             product && <div className='grid grid-cols-2'>
-                <div>
-
+                <div className='flex items-center justify-center'>
+                <ImageSlider variant={product.product.productVariants}/>
                 </div>
-                <div>
+                <div className='flex flex-col gap-4'>
                 <p className='text-2xl font-bold'>{product.product.title}</p>
                 <p>{product.productType} variant</p>
                
@@ -67,14 +68,17 @@ console.log(product);
                         <VariantPicker key={v.id} {...v}
                          title={product.product.title}
                          price={product.product.price}
-                         productID={v.id}
+                         productID={v.productID}
+                         vid={v.id}
                          color={v.color}
                          image={v.variantImages[0]?.image_url}
+                         
                          />
                     ))
                 }
                 </div>
                 </div>
+                <AddToCard/>
                </div>
                 
                 </div>
