@@ -1,7 +1,9 @@
 
 import Product from '@/components/products';
 import { db } from '@/server'
-
+import SearcBox from '@/components/products/SearcBox';
+import TagFilter from '@/components/products/TagFilter';
+import { VariantsWithProduct } from '@/types/inferType';
 async function Home() {
 const porductsWithVariants = await db.query.productVariant.findMany({
   with:{
@@ -12,11 +14,16 @@ const porductsWithVariants = await db.query.productVariant.findMany({
   orderBy:(productVariant,
       {desc})=>[desc(productVariant.id)]
 })
-
+const tags = porductsWithVariants.map((p)=>p.variantTags.map((v)=>v.tag)).flat()
+const uniqueTag = [...new Set(tags)]
 
   return (
     <div>
-      <Product products={porductsWithVariants}/>
+      <div className='grid grid-cols-2 gap-4 items-center '>
+        <SearcBox productWithVariant={porductsWithVariants}/>
+        <TagFilter tags={uniqueTag}/>
+      </div>
+        <Product products={porductsWithVariants}/>
     </div>
   )
 }

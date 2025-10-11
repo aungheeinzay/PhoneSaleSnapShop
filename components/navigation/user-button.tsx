@@ -9,16 +9,17 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { CircleUserRound, LayoutDashboard, LogOut, ShoppingCart } from "lucide-react"
+import { ChartNoAxesColumn, CircleUserRound, LayoutDashboard, LogOut, ShoppingCart } from "lucide-react"
 import Link from "next/link"
 import { signOut } from "next-auth/react"
 import { CiDeliveryTruck } from "react-icons/ci";
 import { IoSettingsOutline } from "react-icons/io5";
 import OrderCart from "../cart/orderCart"
 import { useCartStore } from "@/store/card-store"
+import { useRouter } from "next/navigation"
  function UserButton({user}:Session) {
 const orderCount = useCartStore((state)=>state.cart.length)
-
+const router =useRouter()
   return (
 <div className="flex gap-12 items-center">
   <OrderCart>
@@ -48,10 +49,13 @@ const orderCount = useCartStore((state)=>state.cart.length)
     </DropdownMenuLabel>
     <DropdownMenuSeparator />
     <DropdownMenuItem></DropdownMenuItem>
-    <DropdownMenuItem className="group "><CiDeliveryTruck className="group-hover:text-primary group-hover:translate-x-1 duration-100"/> <span className="group-hover:text-primary">My order</span></DropdownMenuItem>
+    <DropdownMenuItem className="group " onClick={()=>router.push("/dashboard/order")}><CiDeliveryTruck className="group-hover:text-primary group-hover:translate-x-1 duration-100"/> <span className="group-hover:text-primary">My order</span></DropdownMenuItem>
     <DropdownMenuItem className="group" asChild ><Link href={"/dashboard/setting"}><IoSettingsOutline className="group-hover:text-primary group-hover:rotate-180 group-hover:translate-x-1 duration-100 "/> <span className="group-hover:text-primary">Setting</span></Link></DropdownMenuItem>
   {
     user.role==='admin' &&   <DropdownMenuItem className="group" asChild ><Link href={"/dashboard/dataTable"}><LayoutDashboard className="group-hover:text-primary group-hover:rotate-180 group-hover:translate-x-1 duration-100 "/> <span className="group-hover:text-primary">DataTable</span></Link></DropdownMenuItem>
+  }
+  {
+    user.role==='admin' &&   <DropdownMenuItem className="group" asChild ><Link href={"/dashboard/analysis"}><ChartNoAxesColumn className="group-hover:text-primary group-hover:translate-x-1 duration-100 "/> <span className="group-hover:text-primary">analysis</span></Link></DropdownMenuItem>
   }
     <DropdownMenuItem onClick={()=>signOut()}
      className="text-red-600"><LogOut className="text-red-600" size={20}/>logout</DropdownMenuItem>

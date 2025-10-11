@@ -113,6 +113,48 @@
       "when": 1759472832461,
       "tag": "0015_far_glorian",
       "breakpoints": true
+    },
+    {
+      "idx": 16,
+      "version": "7",
+      "when": 1759998891747,
+      "tag": "0016_pale_boom_boom",
+      "breakpoints": true
+    },
+    {
+      "idx": 17,
+      "version": "7",
+      "when": 1759999029451,
+      "tag": "0017_wet_warlock",
+      "breakpoints": true
+    },
+    {
+      "idx": 18,
+      "version": "7",
+      "when": 1759999689395,
+      "tag": "0018_parallel_supernaut",
+      "breakpoints": true
+    },
+    {
+      "idx": 19,
+      "version": "7",
+      "when": 1759999889236,
+      "tag": "0019_wooden_cobalt_man",
+      "breakpoints": true
+    },
+    {
+      "idx": 20,
+      "version": "7",
+      "when": 1759999952308,
+      "tag": "0020_rich_redwing",
+      "breakpoints": true
+    },
+    {
+      "idx": 21,
+      "version": "7",
+      "when": 1760027735351,
+      "tag": "0021_calm_mandarin",
+      "breakpoints": true
     }
   ]
 }

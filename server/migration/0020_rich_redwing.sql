@@ -1,0 +1,1 @@
+ALTER TABLE "orderProduct" ALTER COLUMN "productID" SET DATA TYPE serial;

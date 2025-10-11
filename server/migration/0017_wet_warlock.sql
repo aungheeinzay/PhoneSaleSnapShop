@@ -1,0 +1,1 @@
+ALTER TABLE "orderProduct" ALTER COLUMN "productVariantID" SET DATA TYPE integer;

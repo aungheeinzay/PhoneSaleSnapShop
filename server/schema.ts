@@ -13,7 +13,6 @@ import type { AdapterAccountType } from "@auth/core/adapters"
 import {createId} from '@paralleldrive/cuid2'
 
 import { relations } from "drizzle-orm"
-import { id } from "zod/v4/locales"
 export const RoleEnum=pgEnum('role',['admin','user'])
 export const users = pgTable("user", {
   id: text("id")
@@ -26,7 +25,8 @@ export const users = pgTable("user", {
   image: text("image"),
   isTwoFactorEnabled:boolean('isTwoFactor').default(false),
   role:RoleEnum('role').default('user'),
-  imageKey:text("imageKey")
+  imageKey:text("imageKey"),
+  customerID:text("customerID")
 })
  
 export const accounts = pgTable(
@@ -169,3 +169,54 @@ export const variantTagsRelations = relations(variantTags,(
     })
   })
 ))
+
+export const orders = pgTable("orders",{
+  id:serial("id").primaryKey(),
+  userID:text("userID").notNull().references(()=>users.id,{onDelete:"cascade"}),
+  total:real("total").notNull(),
+  status:text("status").notNull(),
+  created:timestamp("created").defaultNow(),
+  receiptURL:text("receiptURL")
+})
+
+export const orderProduct = pgTable("orderProduct",{
+  id:serial("id").primaryKey(),
+  quantity:integer("quantity").notNull(),
+  productVariantID:serial("productVariantID")
+  .notNull()
+  .references(()=>productVariant.id,{onDelete:"cascade"}),
+  productID:serial("productID").notNull().references(()=>products.id,{onDelete:"cascade"}),
+  orderID:serial("orderID").notNull().references(()=>orders.id,{onDelete:"cascade"})
+})
+
+export const userRelations = relations(users,(
+  ({many})=>({
+    orders:many(orders)
+  })
+))
+
+export const orderRelations = relations(orders,(
+  ({one,many})=>({user:one(users,{
+    fields:[orders.userID],
+    references:[users.id],
+  }),
+  orderProduct:many(orderProduct)
+})
+  
+))
+
+export const orderProductRelations=relations(orderProduct,({one})=>({
+  order:one(orders,{
+    fields:[orderProduct.orderID],
+    references:[orders.id]
+  }),
+  product:one(products,{
+    fields:[orderProduct.productID],
+    references:[products.id]
+  }),
+  productVariant:one(productVariant,{
+    fields:[orderProduct.productVariantID],
+    references:[productVariant.id]
+  })
+}))
+

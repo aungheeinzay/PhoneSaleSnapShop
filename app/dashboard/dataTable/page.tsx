@@ -8,6 +8,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
+import { redirect } from "next/navigation"
+import { auth } from "@/server/auth"
 
 
 export default async function DemoPage() {
@@ -43,6 +45,8 @@ const productData = product.map((p)=>{
   }
     
 })
+  const session = await auth()
+   if(session?.user.role!=="admin")return redirect("/")
   return (
     <div className="container mx-auto py-10 w-11/12">
         <Card>

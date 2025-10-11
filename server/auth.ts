@@ -8,6 +8,7 @@ import { loginSchema } from "@/types/login-schema"
 import bcrypt from 'bcrypt'
 import { eq } from "drizzle-orm"
 import { accounts, users } from "./schema"
+import Stripe from "stripe"
 
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
@@ -102,4 +103,18 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 })
 
   ],
+  events:{
+    createUser:async({user})=>{
+      const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!,{
+        apiVersion:"2025-09-30.clover"
+      })
+      const customer = await stripe.customers.create({
+        email:user.email!,
+        name:user.name!,
+      })
+      console.log("customerID",customer.id);
+      
+      await db.update(users).set({customerID:customer.id}).where(eq(users.id,user.id!))
+    }
+  }
 })
