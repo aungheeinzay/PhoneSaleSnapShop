@@ -18,7 +18,7 @@ import Success from "./Success";
 interface orderCartProps{
     children:React.ReactNode;
 }
-function orderCart({children}:orderCartProps) {
+function OrderCart({children}:orderCartProps) {
     const cartPosition = useCartStore((state)=>state.cartPosition)
   return (
   <Drawer>
@@ -42,4 +42,4 @@ function orderCart({children}:orderCartProps) {
   )
 }
 
-export default orderCart
+export default OrderCart

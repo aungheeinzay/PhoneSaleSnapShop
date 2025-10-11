@@ -3,7 +3,7 @@ import CreateProductForm from "./creteProductForm"
 import React from 'react'
 import { redirect } from "next/navigation"
 
-async function createProduct() {
+async function CreateProduct() {
     const session = await auth()
     if(session?.user.role !== "admin")return redirect("/dashboard/setting") 
         
@@ -14,4 +14,4 @@ async function createProduct() {
   )
 }
 
-export default createProduct
+export default CreateProduct

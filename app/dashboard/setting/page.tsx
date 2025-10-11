@@ -4,7 +4,7 @@ import Profile from '@/components/setting/Profile'
 import TwoFactor from '@/components/setting/TwoFactor'
 import { auth } from '@/server/auth'
 import { redirect } from 'next/navigation'
-import { IoSettingsOutline } from "react-icons/io5";
+
 
 async function Setting() {
     const session = await auth()

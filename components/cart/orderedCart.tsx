@@ -14,8 +14,8 @@ import {
 import { Button } from '../ui/button'
 import { formatPrice } from '@/lib/formatPrice'
 import { caculatingTotal } from '@/lib/caculatingTotal'
-import CartStatus from './CartStatus'
-function orderedCart() {
+
+function OrderedCart() {
     const {addToCart,cart,removeFromCart,setCartPosition,cartPosition} = useCartStore((state)=>state)
     
   return (
@@ -69,4 +69,4 @@ function orderedCart() {
   )
 }
 
-export default orderedCart
+export default OrderedCart

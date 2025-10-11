@@ -3,7 +3,7 @@ import Product from '@/components/products';
 import { db } from '@/server'
 import SearcBox from '@/components/products/SearcBox';
 import TagFilter from '@/components/products/TagFilter';
-import { VariantsWithProduct } from '@/types/inferType';
+
 async function Home() {
 const porductsWithVariants = await db.query.productVariant.findMany({
   with:{

@@ -4,7 +4,7 @@ import { Button } from '../ui/button'
 import { redirect, useSearchParams } from 'next/navigation'
 import { useCartStore } from '@/store/card-store'
 
-function addToCard() {
+function AddToCard() {
     const [quantity,setQuantity] =useState(1)
     const searchParams = useSearchParams()
     const variantId = Number(searchParams.get("vid"))
@@ -50,4 +50,4 @@ function addToCard() {
   )
 }
 
-export default addToCard
+export default AddToCard

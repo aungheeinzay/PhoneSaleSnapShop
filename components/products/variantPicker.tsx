@@ -12,7 +12,7 @@ interface variantPickerProps{
     image:string
     vid:number
 }
-function variantPicker({id,color,productID,productType,price,image,title,vid}:variantPickerProps) {
+function VariantPicker({color,productID,productType,price,image,title,vid}:variantPickerProps) {
     const router = useRouter()
     const searchParams =  useSearchParams()
     const type= searchParams.get("productType") || productType
@@ -30,4 +30,4 @@ function variantPicker({id,color,productID,productType,price,image,title,vid}:va
   )
 }
 
-export default variantPicker
+export default VariantPicker

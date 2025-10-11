@@ -23,7 +23,7 @@ import { useEffect } from "react"
 import { error } from "console"
 
 
-function creteProductForm() {
+function CreteProductForm() {
   const searchParam = useSearchParams()
   const editId = searchParam.get("id") || null
   
@@ -139,4 +139,4 @@ function creteProductForm() {
   )
 }
 
-export default creteProductForm
+export default CreteProductForm

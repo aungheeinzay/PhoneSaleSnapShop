@@ -1,4 +1,4 @@
-"use server"
+
 import { auth } from '@/server/auth'
 import NavLogo from './nav-logo'
 import UserButton from './user-button'
