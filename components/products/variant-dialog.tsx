@@ -167,11 +167,11 @@ function VariantDialog({children,editMode,productID,variant}:VariantDialogProps)
     </Form>
   {
             editMode && <Button className="cursor-pointer bg-red-600 text-white mt-5" type="button"
-            onClick={async (e) => {
-    e.preventDefault()
-     await deleteAVariant.execute({ id:variant?.id!})
-      
-  }}>
+          onClick={async (e) => {
+  e.preventDefault()
+  if (!variant?.id) return 
+  await deleteAVariant.execute({ id: variant.id })
+}}>
                 delete variant
             </Button>
         }
