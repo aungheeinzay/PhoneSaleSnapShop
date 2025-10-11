@@ -67,7 +67,7 @@ function PaymentForm({ totalPrice }: paymentFormProps) {
         clientSecret: response.data.success.clientSecretId!,
         redirect: "if_required",
         confirmParams: {
-          return_url:"http://localhost:3000/success",
+          return_url:"https://snapshop-hfgzp36lt-aung-heeins-projects.vercel.app/success",
           receipt_email: response.data.success.user_email!,
         },
       })
